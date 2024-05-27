@@ -14,6 +14,10 @@ import { Fragment, useState } from "react";
 import { manufacturers } from "@/constants";
 import { SearchManufacturerProps } from "@/types";
 
+// const SearchManufacturer = ({
+//   selected,
+//   setSelected,
+// }: SearchManufacturerProps) => {
 const SearchManufacturer = ({
   manufacturer,
   setManufacturer,
@@ -32,6 +36,7 @@ const SearchManufacturer = ({
 
   return (
     <div className="search-manufacturer">
+      {/* <Combobox value={selected} onChange={setSelected}> */}
       <Combobox value={manufacturer} onChange={setManufacturer}>
         <div className="relative w-full">
           <ComboboxButton className="absolute top-[14px]">

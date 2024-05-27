@@ -1,10 +1,11 @@
 "use client";
 
 import { ShowMoreProps } from "@/types";
+import { updateSearchParams } from "@/utils";
 import { useRouter } from "next/navigation";
 import CustomButton from "./CustomButton";
-import { updateSearchParams } from "@/utils";
 
+// const ShowMore = ({ pageNumber, isNext, setLimit }: ShowMoreProps) => {
 const ShowMore = ({ pageNumber, isNext }: ShowMoreProps) => {
   const router = useRouter();
 
@@ -12,7 +13,8 @@ const ShowMore = ({ pageNumber, isNext }: ShowMoreProps) => {
     const newLimit = (pageNumber + 1) * 10;
     const newPathName = updateSearchParams("limit", `${newLimit}`);
 
-    router.push(newPathName);
+    router.push(newPathName, { scroll: false });
+    // setLimit(newLimit);
   };
 
   return (

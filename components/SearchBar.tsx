@@ -18,7 +18,10 @@ const SearchButton = ({ otherClasses }: { otherClasses: string }) => (
   </button>
 );
 
+// const SearchBar = ({ setManufacturer, setModel }) => {
 const SearchBar = () => {
+  // const [searchManufacturer, setSearchManufacturer] = useState("");
+  // const [searchModel, setSearchModel] = useState("");
   const [manufacturer, setManufacturer] = useState("");
   const [model, setModel] = useState("");
   const router = useRouter();
@@ -29,8 +32,13 @@ const SearchBar = () => {
     if (manufacturer === "" && model === "") {
       return alert("Please fill in the search bar");
     }
+    // if (searchManufacturer === "" && searchModel === "") {
+    //   return alert("Please fill in the search bar");
+    // }
 
     updateSearchParams(model.toLowerCase(), manufacturer.toLowerCase());
+    // setModel(searchModel);
+    // setManufacturer(searchManufacturer);
   };
 
   const updateSearchParams = (model: string, manufacturer: string) => {
@@ -52,12 +60,16 @@ const SearchBar = () => {
       window.location.pathname
     }?${searchParams.toString()}`;
 
-    router.push(newPathname);
+    router.push(newPathname, { scroll: false });
   };
 
   return (
     <form className="searchbar" onSubmit={handleSearch}>
       <div className="searchbar__item">
+        {/* <SearchManufacturer
+          selected={searchManufacturer}
+          setSelected={setSearchManufacturer}
+        /> */}
         <SearchManufacturer
           manufacturer={manufacturer}
           setManufacturer={setManufacturer}
@@ -80,6 +92,14 @@ const SearchBar = () => {
           placeholder="Tiguan"
           className="searchbar__input"
         />
+        {/* <input
+          type="text"
+          name="model"
+          value={searchModel}
+          onChange={(e) => setSearchModel(e.target.value)}
+          placeholder="Tiguan"
+          className="searchbar__input"
+        /> */}
         <SearchButton otherClasses="sm:hidden" />
       </div>
       <SearchButton otherClasses="max-sm:hidden" />

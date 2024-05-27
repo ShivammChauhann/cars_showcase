@@ -1,9 +1,11 @@
 "use client";
 
-import { Fragment, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { Fragment, useState } from "react";
 
+import { CustomFilterProps } from "@/types";
+import { updateSearchParams } from "@/utils";
 import {
   Listbox,
   ListboxButton,
@@ -11,17 +13,16 @@ import {
   ListboxOptions,
   Transition,
 } from "@headlessui/react";
-import { CustomFilterProps } from "@/types";
-import { updateSearchParams } from "@/utils";
 
+// const CustomFilter = ({ title, options, setFilter }: CustomFilterProps) => {
 const CustomFilter = ({ title, options }: CustomFilterProps) => {
   const router = useRouter();
   const [selected, setSelected] = useState(options[0]);
 
-  const handleUpdateParams = (e: { title: string, value: string }) => {
+  const handleUpdateParams = (e: { title: string; value: string }) => {
     const newPathName = updateSearchParams(title, e.value.toLowerCase());
 
-    router.push(newPathName);
+    router.push(newPathName, { scroll: false });
   };
 
   return (
@@ -31,6 +32,7 @@ const CustomFilter = ({ title, options }: CustomFilterProps) => {
         onChange={(e) => {
           setSelected(e);
           handleUpdateParams(e);
+          // setFilter(e.value);
         }}
       >
         <div className="relative w-fit z-10">
